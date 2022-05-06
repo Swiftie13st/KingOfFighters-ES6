@@ -15,10 +15,10 @@ export class Player extends AcGameObject {
 
         this.direction = 1; //方向 1, -1
 
-        this.vx = 0; //速度
-        this.vy = 0;
+        this.vx = 0; //当前水平速度
+        this.vy = 0; // 当前垂直速度
 
-        this.speedx = 400; // 水平速度 
+        this.speedx = 400; // 水平初始速度 
         this.speedy = -1000; // 跳起初始速度
 
         this.gravity = 50; //重力
@@ -29,7 +29,7 @@ export class Player extends AcGameObject {
 
         this.animations = new Map();
 
-        this.frame_current_cnt = 0;
+        this.frame_current_cnt = 0; // 当前动作贴图应为第几帧
 
         this.status = 3; // 0: idle, 1: front, 2: back, 3: jump, 4: attack, 5: been attack, 6: death
 
@@ -41,6 +41,7 @@ export class Player extends AcGameObject {
 
 
     update_move() {
+        // jump
         if (this.status === 3) {
             this.vy += this.gravity;
         }
@@ -50,6 +51,7 @@ export class Player extends AcGameObject {
 
         this.y += this.vy * this.timedelta / 1000;
 
+        //防止掉出地图外
         if (this.y > 450) {
             this.y = 450;
             this.vy = 0;
@@ -58,7 +60,7 @@ export class Player extends AcGameObject {
             }
 
         }
-
+        // 防止走出地图
         if (this.x < 0) {
             this.x = 0;
         } else if (this.x + this.width > this.root.game_map.$canvas.width()) {
@@ -83,8 +85,8 @@ export class Player extends AcGameObject {
         }
 
         if (this.status === 0 || this.status === 1) {
-            //攻击状态
-            if (space) {
+            
+            if (space) {//攻击状态
                 this.status = 4;
                 this.vx = 0;
                 this.frame_current_cnt = 0;
