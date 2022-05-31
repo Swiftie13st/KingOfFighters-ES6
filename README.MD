@@ -1,18 +1,7 @@
-## 拳皇
-![](/static/images/background/0.gif)
+# 拳皇
 
-### Version 1.0
-完成第二节课内容
+![效果图](https://raw.githubusercontent.com/Swiftie13st/Figurebed/main/img/202205310922671.gif)
+
+## Version 1.0
+
 实现攻击，血条，时间功能
-
-
-### Version 0.1
-第一节课内容
-```
-update_control();
-update_move();
-update_direction();
-update_attack();
-```
-
-
